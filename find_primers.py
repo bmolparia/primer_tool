@@ -223,7 +223,12 @@ class Primers(object):
         #Initializing the sequences and multiplex length 
         minimum_pcr_len = 40 # These are the minimum number of bp that will be a part of the PCR product from each segment
         main_counter  = 1
+        setC = 1
         for seg in seg_arr:
+            
+            outf.write('###---------------------- SET '+str(setC)+'----------------------###\n')
+            setC += 1
+
             seg_counter   = 0
             multiplex_len = 100
             while seg_counter < seg:
