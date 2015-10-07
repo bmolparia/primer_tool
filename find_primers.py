@@ -37,7 +37,6 @@ class Sequence(object):
             new_seq += comp_bases[base]
         return new_seq[::-1]
     
-    
 class parseInput(object):
     
     ## Handles the parsing of the input file 
@@ -241,13 +240,15 @@ class Primers(object):
                 
                 global_args['PRIMER_PRODUCT_SIZE_RANGE'] = [[multiplex_len-10,multiplex_len+10]]
             
-                seq_id   = seq_dict[main_counter].iden+' - '+seq_dict[main_counter+1].iden
+                seq_id   = seq_dict[main_counter].iden+'-'+seq_dict[main_counter+1].iden
+                seq_id   = seq_id.replace(' ','')
                 seq_args = {'SEQUENCE_ID':seq_id, 'SEQUENCE_TEMPLATE':pcr_template, 'SEQUENCE_INCLUDED_REGION': [0,len(pcr_template)]}
                 
                 res = primer3.bindings.designPrimers(seq_args, global_args)
         
-                num_primer_pairs = res['PRIMER_PAIR_NUM_RETURNED']
-            
+                #num_primer_pairs = res['PRIMER_PAIR_NUM_RETURNED']
+                num_primer_pairs = 1 ## Hard coded because we want just one output primer
+
                 outf.write('\nJunction: '+seq_id+'\n\n')
                 count_pair = 0
                 while count_pair < num_primer_pairs:
@@ -260,8 +261,8 @@ class Primers(object):
                     right_prim_gc = str(res['PRIMER_RIGHT_'+str(count_pair)+'_GC_PERCENT'])
                     product_size  = str(res['PRIMER_PAIR_'+str(count_pair)+'_PRODUCT_SIZE'])
                     
-                    outf.write( ('\t').join(['Forward: ', left_primer,  left_prim_tm,  left_prim_gc])  +'\n')
-                    outf.write( ('\t').join(['Reverse: ', right_primer, right_prim_tm, right_prim_gc]) +'\n')
+                    outf.write( ('\t').join([seq_id+'_F', left_primer,  left_prim_tm,  left_prim_gc])  +'\n')
+                    outf.write( ('\t').join([seq_id+'_R', right_primer, right_prim_tm, right_prim_gc]) +'\n')
                     outf.write( 'Product Size: '+ product_size+'\n\n')
                     
                     count_pair += 1 
