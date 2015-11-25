@@ -6,11 +6,12 @@ together using a yeast assembly protocol.
 
 usage: ```find_primers.py [-h] [-oL OVERLAP_LENGTH] [-eL ELONGATION_LENGTH]  inputFile outputFile```
 
-positional arguments:
+
+#### Positional arguments:
     inputFile
     outputFile
 
-optional arguments:
+#### Optional arguments:
     -h, --help                show the help message and exit
     -oL, --overlap_length     OVERLAP_LENGTH    - this is the number of b.p of the primer that overlaps the adjacent segment        
     -eL, --elongation_length  ELONGATION_LENGTH - this is the nmber of b.p in the elongation part of the primer
