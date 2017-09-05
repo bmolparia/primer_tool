@@ -1,4 +1,4 @@
-##Primer Tool for Assembly using Yeast Protocol 
+## Primer Tool for Assembly using Yeast Protocol 
 
 This is a simple program that reads in a file with multiple sequences in fasta
 format and then finds the primers that are required to join these sequences
@@ -17,7 +17,7 @@ usage: ```find_primers.py [-h] [-oL OVERLAP_LENGTH] [-eL ELONGATION_LENGTH]  inp
     -eL, --elongation_length  ELONGATION_LENGTH - this is the nmber of b.p in the elongation part of the primer
 
 
-###Dependency
+### Dependency
 primer3 (https://github.com/libnano/primer3-py)
 
 You can use the get_primer3.sh script to download and install the primer3 module. This will be done inplace where this repo was cloned.
